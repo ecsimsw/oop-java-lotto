@@ -8,4 +8,8 @@ public class Lottos {
     public Lottos(List lottos){
         this.lottos = lottos;
     }
+
+    public void printLottos(){
+        lottos.stream().forEach(Lotto::printNumbers);
+    }
 }

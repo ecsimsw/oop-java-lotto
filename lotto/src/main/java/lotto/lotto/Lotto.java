@@ -1,6 +1,9 @@
 package lotto.lotto;
 
+import lotto.view.OutputView;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     public static final int MIN = 1;
@@ -16,5 +19,11 @@ public class Lotto {
 
     public static int getNumberOfPurchase(int purchaseAmount) {
         return purchaseAmount / PRICE;
+    }
+
+    public void printNumbers() {
+        OutputView.printMsg("[");
+        OutputView.printMsg(numbers.toString());
+        OutputView.printMsg("]\n");
     }
 }

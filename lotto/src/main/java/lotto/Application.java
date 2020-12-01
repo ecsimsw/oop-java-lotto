@@ -1,11 +1,16 @@
 package lotto;
 
+import lotto.lotto.Lotto;
+import lotto.lotto.Lottos;
+import lotto.utils.LottoFactory;
 import lotto.view.InputView;
-import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args){
         int purchaseAmount = InputView.getPurchaseAmount();
-        OutputView.printNumberOfPurchase(purchaseAmount);
+        int purchaseCount = Lotto.getNumberOfPurchase(purchaseAmount);
+
+        Lottos lottos = LottoFactory.createLottos(purchaseCount);
+        lottos.printLottos();
     }
 }
