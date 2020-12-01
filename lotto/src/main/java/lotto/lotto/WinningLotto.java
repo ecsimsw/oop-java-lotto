@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.lotto;
 
 /**
  * 당첨 번호를 담당하는 객체
@@ -13,7 +13,8 @@ public class WinningLotto {
     }
 
     public Rank match(Lotto userLotto) {
-        // TODO 로직 구현
-        return null;
+        int countOfMatch = userLotto.getMatchCount(lotto);
+        boolean isMatchBonus = userLotto.isMatchBonus(bonusNo);
+        return Rank.valueOf(countOfMatch, isMatchBonus);
     }
 }
