@@ -36,4 +36,11 @@ public class LottoFactory {
         } while (numbers.contains(rand));
         return rand;
     }
+
+    public static Lotto createWinningLotto(String input){
+        List<Integer> numbers = Arrays.stream(input.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        return new Lotto(numbers);
+    }
 }
