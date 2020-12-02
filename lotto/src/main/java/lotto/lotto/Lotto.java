@@ -1,5 +1,6 @@
 package lotto.lotto;
 
+import lotto.utils.InputValidator;
 import lotto.view.OutputView;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        InputValidator.checkIsValidLotto(numbers);
         this.numbers = numbers;
     }
 

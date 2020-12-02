@@ -1,9 +1,7 @@
 package lotto.utils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import lotto.lotto.Lotto;
 import lotto.lotto.Lottos;
@@ -36,9 +34,7 @@ public class LottoFactory {
     }
 
     public static Lotto createWinningLotto(String input) {
-        List<Integer> numbers = Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        List numbers = StringHandler.toNumberList(input);
         return new Lotto(numbers);
     }
 }

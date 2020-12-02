@@ -1,5 +1,11 @@
 package lotto.utils;
 
+import lotto.view.InputView;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class StringHandler {
     private StringHandler(){}
 
@@ -9,6 +15,16 @@ public class StringHandler {
             return true;
         } catch (IllegalArgumentException IAE) {
             return false;
+        }
+    }
+
+    public static List<Integer> toNumberList(String input){
+        try{
+            return Arrays.stream(input.split(InputView.SEPARATOR_NUMBERS))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        }catch (IllegalArgumentException IAE){
+            throw new IllegalArgumentException("fsa");
         }
     }
 }

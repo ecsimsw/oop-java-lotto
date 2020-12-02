@@ -8,10 +8,12 @@ import lotto.utils.StringHandler;
 import java.util.Scanner;
 
 public class InputView {
+    public static final String SEPARATOR_NUMBERS = ",";
+
     private static final Scanner scanner = new Scanner(System.in);
     private static final String ASK_PURCHASE_AMOUNT = "구입 금액을 입력해 주세요.\n";
     private static final String ASK_WINNING_NUMBERS  = "지난 주 당첨 번호를 입력해 주세요.\n";
-    private static final String ASK_Bonus_NUMBERS  = "보너스 볼을 입력해 주세요.\n";
+    private static final String ASK_BONUS_NUMBERS = "보너스 볼을 입력해 주세요.\n";
 
     private InputView(){}
 
@@ -35,11 +37,16 @@ public class InputView {
     private static Lotto getWInningNumber() {
         OutputView.printMsg(ASK_WINNING_NUMBERS);
 
-        return LottoFactory.createWinningLotto(getInput());
+        try{
+            return LottoFactory.createWinningLotto(getInput());
+        }catch (IllegalArgumentException IAE){
+            IAE.printStackTrace();
+            return getWInningNumber();
+        }
     }
 
     private static int getBonusNumber() {
-        OutputView.printMsg(ASK_Bonus_NUMBERS);
+        OutputView.printMsg(ASK_BONUS_NUMBERS);
 
         String input = getInput();
 
