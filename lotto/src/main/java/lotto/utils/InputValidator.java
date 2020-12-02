@@ -11,6 +11,7 @@ public class InputValidator {
     private static final String INVALID_LENGTH_ERROR = "잘못된 길이의 로또 번호입니다.";
     private static final String INVALID_RANGE_ERROR = "잘못된 범위의 로또 번호입니다.";
     private static final String NOT_NUMERIC_ERROR = "숫자가 아닌 입력입니다.";
+    private static final String ALREADY_USED_NUMBER = "이미 사용된 로또 번호입니다.";
 
     private InputValidator(){}
 
@@ -18,6 +19,23 @@ public class InputValidator {
         checkIsDuplicated(numbers);
         checkIsValidLength(numbers, Lotto.LEN);
         checkIsInRange(numbers, Lotto.MIN, Lotto.MAX);
+    }
+
+    public static void checkIsValidWinningLotto(Lotto winningLotto, int bonus){
+        checkIsInRange(bonus, Lotto.MIN, Lotto.MAX);
+        checkAlreadyUsed(winningLotto, bonus);
+    }
+
+    private static void checkAlreadyUsed(Lotto winningLotto, int bonus){
+        if(winningLotto.contains(bonus)){
+            throw new IllegalArgumentException(ALREADY_USED_NUMBER);
+        }
+    }
+
+    private static void checkIsInRange(int number, int min, int max){
+        if(number < min || number > max){
+            throw new IllegalArgumentException(NOT_NUMERIC_ERROR);
+        }
     }
 
     private static void checkIsDuplicated(List<Integer> numbers){

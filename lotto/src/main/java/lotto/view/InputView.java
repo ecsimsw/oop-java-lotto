@@ -28,10 +28,10 @@ public class InputView {
     }
 
     public static WinningLotto getWinningLotto() {
-        Lotto winningLotto = getWInningNumber();
+        Lotto lotto = getWInningNumber();
         int bonus = getBonusNumber();
 
-        return new WinningLotto(winningLotto, bonus);
+        return new WinningLotto(lotto, bonus);
     }
 
     private static Lotto getWInningNumber() {
