@@ -18,8 +18,8 @@ public class Application {
         lottos.printLottos();
 
         WinningLotto winningLotto = InputView.getWinningLotto();
-        int prizeMoney = lottos.getPrizeMoney(winningLotto);
+        lottos.printPriceStatistics(winningLotto);
 
-        
+        lottos.printProfit(winningLotto, purchaseAmount);
     }
 }
