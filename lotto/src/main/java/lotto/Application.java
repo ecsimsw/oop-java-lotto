@@ -8,12 +8,12 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Application {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         int purchaseAmount = InputView.getPurchaseAmount();
         int purchaseCount = Lotto.getNumberOfPurchase(purchaseAmount);
         OutputView.printNumberOfPurchase(purchaseCount);
 
-        if(purchaseCount < 1){
+        if (purchaseCount < 1) {
             return;
         }
 

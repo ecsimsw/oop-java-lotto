@@ -9,12 +9,12 @@ public class OutputView {
 
     private OutputView(){}
 
-    public static void printNumbers(String numbers){
+    public static void printNumbers(String numbers) {
         printMsg(numbers);
         printNewLine();
     }
 
-    public static void printNewLine(){
+    public static void printNewLine() {
         printMsg("\n");
     }
 
@@ -22,22 +22,22 @@ public class OutputView {
         printfMsg(NUMBER_OF_PURCHASE, purchaseCount);
     }
 
-    public static void printWinningLine(int index, int matchCount){
+    public static void printWinningLine(int index, int matchCount) {
         printfMsg(WINNING_COUNT_LINE,
                 Rank.values()[index].getCountOfMatch(),
                 Rank.values()[index].getWinningMoney(),
                 matchCount);
     }
 
-    public static void printProfit(int profit){
+    public static void printProfit(int profit) {
         printfMsg(PROFIT_LINE_START, profit);
     }
 
-    private static void printfMsg(String msg, Object... objects){
+    private static void printfMsg(String msg, Object... objects) {
         System.out.printf(msg, objects);
     }
 
-    public static void printMsg(Object msg){
+    public static void printMsg(Object msg) {
         System.out.print(msg);
     }
 }

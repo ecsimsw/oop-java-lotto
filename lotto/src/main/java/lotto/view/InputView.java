@@ -20,9 +20,9 @@ public class InputView {
 
     public static int getPurchaseAmount() {
         OutputView.printMsg(ASK_PURCHASE_AMOUNT);
-        try{
+        try {
             return getNumber();
-        }catch (IllegalArgumentException IAE){
+        } catch (IllegalArgumentException IAE) {
             IAE.printStackTrace();
             return getPurchaseAmount();
         }
@@ -30,10 +30,10 @@ public class InputView {
 
     public static WinningLotto getWinningLotto() {
         Lotto lotto = getLottoNumber();
-        try{
+        try {
             int bonus = getBonusNumber();
             return new WinningLotto(lotto, bonus);
-        }catch (IllegalArgumentException IAE){
+        } catch (IllegalArgumentException IAE) {
             IAE.printStackTrace();
             return getWinningLotto(lotto);
         }
@@ -41,10 +41,10 @@ public class InputView {
 
     // 보너스 볼 입력에 문제가 생긴 경우, lotto 번호는 유지한채 보너스 볼 입력만 수행한다.
     private static WinningLotto getWinningLotto(Lotto lotto) {
-        try{
+        try {
             int bonus = getBonusNumber();
             return new WinningLotto(lotto, bonus);
-        }catch (IllegalArgumentException IAE){
+        } catch (IllegalArgumentException IAE){
             IAE.printStackTrace();
             return getWinningLotto(lotto);
         }
@@ -52,9 +52,9 @@ public class InputView {
 
     private static Lotto getLottoNumber() {
         OutputView.printMsg(ASK_WINNING_NUMBERS);
-        try{
+        try {
             return LottoFactory.createLotto(getInput());
-        }catch (IllegalArgumentException IAE){
+        } catch (IllegalArgumentException IAE) {
             IAE.printStackTrace();
             return getLottoNumber();
         }
@@ -62,15 +62,15 @@ public class InputView {
 
     private static int getBonusNumber() {
         OutputView.printMsg(ASK_BONUS_NUMBERS);
-        try{
+        try {
             return getNumber();
-        }catch (IllegalArgumentException IAE){
+        } catch (IllegalArgumentException IAE) {
             IAE.printStackTrace();
             return getBonusNumber();
         }
     }
 
-    private static int getNumber(){
+    private static int getNumber() {
         String input = getInput();
         InputValidator.checkIsNumeric(input);
         return Integer.parseInt(input);

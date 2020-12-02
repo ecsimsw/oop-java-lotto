@@ -19,7 +19,7 @@ public class StringHandler {
         }
     }
 
-    public static List<Integer> toNumberList(String input){
+    public static List<Integer> toNumberList(String input) {
         InputValidator.checkAllNumeric(input);
         return Arrays.stream(input.split(InputView.SEPARATOR_NUMBERS))
                 .map(Integer::parseInt)
