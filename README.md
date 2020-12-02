@@ -46,7 +46,7 @@
     - WinningLotto : 사용자가 입력한 우승 로또 번호와 보너스 번호를 저장한다.
     
 - #### utils
-    - InputValidator : 사용자 입력이 유효한지 검증한다.
+    - InputValidatorTest : 사용자 입력이 유효한지 검증한다.
     - LottoFactory : 로또 번호를 생성한다.
     - RandomUtils : 범위 내 임의의 숫자를 리턴한다.
     - StringHandler : 사용자의 입력 문자열 처리를 위한 클래스이다.

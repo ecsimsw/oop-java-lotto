@@ -1,7 +1,6 @@
 package lotto.utils;
 
 import lotto.lotto.Lotto;
-import lotto.view.InputView;
 
 import java.util.Arrays;
 import java.util.List;
