@@ -64,4 +64,10 @@ public class InputValidator {
             throw new IllegalArgumentException(NOT_NUMERIC_ERROR);
         }
     }
+
+    public static void checkIsNumeric(String input){
+        if(!StringHandler.isNumeric(input)){
+            throw new IllegalArgumentException(NOT_NUMERIC_ERROR);
+        }
+    }
 }

@@ -1,10 +1,7 @@
 package lotto;
 
-import java.util.List;
-
 import lotto.lotto.Lotto;
 import lotto.lotto.Lottos;
-import lotto.lotto.Rank;
 import lotto.lotto.WinningLotto;
 import lotto.utils.LottoFactory;
 import lotto.view.InputView;
@@ -15,6 +12,10 @@ public class Application {
         int purchaseAmount = InputView.getPurchaseAmount();
         int purchaseCount = Lotto.getNumberOfPurchase(purchaseAmount);
         OutputView.printNumberOfPurchase(purchaseCount);
+
+        if(purchaseCount < 1){
+            return;
+        }
 
         Lottos lottos = LottoFactory.createLottos(purchaseCount);
         lottos.printLottos();

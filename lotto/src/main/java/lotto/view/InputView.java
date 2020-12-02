@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.lotto.Lotto;
 import lotto.lotto.WinningLotto;
+import lotto.utils.InputValidator;
 import lotto.utils.LottoFactory;
 import lotto.utils.StringHandler;
 
@@ -19,9 +20,9 @@ public class InputView {
 
     public static int getPurchaseAmount() {
         OutputView.printMsg(ASK_PURCHASE_AMOUNT);
-        try {
-            return Integer.parseInt(getInput());
-        } catch (IllegalArgumentException IAE) {
+        try{
+            return getNumber();
+        }catch (IllegalArgumentException IAE){
             IAE.printStackTrace();
             return getPurchaseAmount();
         }
@@ -29,14 +30,28 @@ public class InputView {
 
     public static WinningLotto getWinningLotto() {
         Lotto lotto = getLottoNumber();
-        int bonus = getBonusNumber();
+        try{
+            int bonus = getBonusNumber();
+            return new WinningLotto(lotto, bonus);
+        }catch (IllegalArgumentException IAE){
+            IAE.printStackTrace();
+            return getWinningLotto(lotto);
+        }
+    }
 
-        return new WinningLotto(lotto, bonus);
+    // 보너스 볼 입력에 문제가 생긴 경우, lotto 번호는 유지한채 보너스 볼 입력만 수행한다.
+    private static WinningLotto getWinningLotto(Lotto lotto) {
+        try{
+            int bonus = getBonusNumber();
+            return new WinningLotto(lotto, bonus);
+        }catch (IllegalArgumentException IAE){
+            IAE.printStackTrace();
+            return getWinningLotto(lotto);
+        }
     }
 
     private static Lotto getLottoNumber() {
         OutputView.printMsg(ASK_WINNING_NUMBERS);
-
         try{
             return LottoFactory.createLotto(getInput());
         }catch (IllegalArgumentException IAE){
@@ -47,14 +62,17 @@ public class InputView {
 
     private static int getBonusNumber() {
         OutputView.printMsg(ASK_BONUS_NUMBERS);
-
-        String input = getInput();
-
-        if (!StringHandler.isNumeric(input)) {
-            OutputView.printMsg("숫자가 아닙니다.");
+        try{
+            return getNumber();
+        }catch (IllegalArgumentException IAE){
+            IAE.printStackTrace();
             return getBonusNumber();
         }
+    }
 
+    private static int getNumber(){
+        String input = getInput();
+        InputValidator.checkIsNumeric(input);
         return Integer.parseInt(input);
     }
 
