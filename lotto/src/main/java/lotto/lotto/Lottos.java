@@ -15,23 +15,23 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public void printLottos(){
+    public void printLottos() {
         lottos.stream().forEach(Lotto::printNumbers);
     }
 
-    public void printPriceStatistics(WinningLotto winningLotto){
+    public void printPriceStatistics(WinningLotto winningLotto) {
         List<Rank> rankList = getRankList(winningLotto);
         int[] winningCount = getWinningCountList(rankList);
 
-        for(int i = PRINT_PRICE_FROM; i>= PRINT_PRICE_TO; i--){
+        for (int i = PRINT_PRICE_FROM; i>= PRINT_PRICE_TO; i--) {
             OutputView.printWinningLine(i, winningCount[i]);
         }
     }
 
-    private int[] getWinningCountList(List<Rank> rankList){
+    private int[] getWinningCountList(List<Rank> rankList) {
         int[] winningCount = new int[Rank.values().length];
 
-        for(int i=0; i<rankList.size(); i++){
+        for (int i=0; i<rankList.size(); i++) {
             Rank rank = rankList.get(i);
             winningCount[rank.ordinal()]++;
         }
@@ -39,24 +39,24 @@ public class Lottos {
         return winningCount;
     }
 
-    public void printProfit(WinningLotto winningLotto, int originMoney){
+    public void printProfit(WinningLotto winningLotto, int originMoney) {
         int prizeMoney = getTotalPrize(winningLotto);
         int profit = (int)((prizeMoney/(double)originMoney)*100);
 
         OutputView.printProfit(profit);
     }
 
-    private int getTotalPrize(WinningLotto winningLotto){
+    private int getTotalPrize(WinningLotto winningLotto) {
         List<Rank> rankList = getRankList(winningLotto);
 
         int money = 0;
-        for(Rank rank : rankList){
+        for (Rank rank : rankList) {
             money += rank.getWinningMoney();
         }
         return money;
     }
 
-    private List<Rank> getRankList(WinningLotto winningLotto){
+    private List<Rank> getRankList(WinningLotto winningLotto) {
         return lottos.stream()
                 .map(lotto-> winningLotto.match(lotto))
                 .collect(Collectors.toList());

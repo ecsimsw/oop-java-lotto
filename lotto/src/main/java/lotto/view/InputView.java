@@ -43,7 +43,7 @@ public class InputView {
 
         String input = getInput();
 
-        if(!StringHandler.isNumeric(input)){
+        if (!StringHandler.isNumeric(input)) {
             OutputView.printMsg("숫자가 아닙니다.");
             return getBonusNumber();
         };

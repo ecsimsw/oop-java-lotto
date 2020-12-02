@@ -3,8 +3,6 @@ package lotto.lotto;
 import lotto.view.OutputView;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Lotto {
     public static final int MIN = 1;
@@ -22,21 +20,21 @@ public class Lotto {
         return purchaseAmount / PRICE;
     }
 
-    public boolean contains(int object){
+    public boolean contains(int object) {
         return numbers.contains(object);
     }
 
-    public int getMatchCount(Lotto lotto){
-        return (int)this.numbers.stream().filter(n -> lotto.contains(n)).count();
+    public int getMatchCount(Lotto lotto) {
+        return (int)this.numbers.stream()
+                .filter(n -> lotto.contains(n))
+                .count();
     }
 
-    public boolean isMatchBonus(int bonus){
+    public boolean isMatchBonus(int bonus) {
         return numbers.contains(bonus);
     }
 
     public void printNumbers() {
-        OutputView.printMsg("[");
-        OutputView.printMsg(numbers.toString());
-        OutputView.printMsg("]\n");
+        OutputView.printNumbers(numbers.toString());
     }
 }

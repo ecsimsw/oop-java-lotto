@@ -8,7 +8,16 @@ public class OutputView {
     private static final String WINNING_COUNT_LINE = "%s개 일치 (%s원) - %s개\n";
     private static final String PROFIT_LINE_START = "총 수익률은 ";
     private static final String PROFIT_LINE_END = "%입니다.";
+    private static final String NUMBERS_LINE_START = "[";
+    private static final String NUMBERS_LINE_END = "]\n";
+
     private OutputView(){}
+
+    public static void printNumbers(String numbers){
+        printMsg(NUMBERS_LINE_START);
+        printMsg(numbers);
+        printMsg(NUMBERS_LINE_END);
+    }
 
     public static void printNumberOfPurchase(int purchaseAmount) {
         printMsg(Lotto.getNumberOfPurchase(purchaseAmount));

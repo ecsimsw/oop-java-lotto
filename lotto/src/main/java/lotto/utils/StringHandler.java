@@ -3,11 +3,11 @@ package lotto.utils;
 public class StringHandler {
     private StringHandler(){}
 
-    public static boolean isNumeric(String input){
-        try{
+    public static boolean isNumeric(String input) {
+        try {
             Integer.parseInt(input);
             return true;
-        }catch (IllegalArgumentException IAE){
+        } catch (IllegalArgumentException IAE) {
             return false;
         }
     }

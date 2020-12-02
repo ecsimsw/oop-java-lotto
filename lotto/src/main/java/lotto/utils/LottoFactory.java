@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import lotto.lotto.Lotto;
 import lotto.lotto.Lottos;
-import lotto.lotto.WinningLotto;
 
 public class LottoFactory {
     private LottoFactory(){}
@@ -30,14 +29,13 @@ public class LottoFactory {
 
     private static int getRandWithoutDuplicate(List<Integer> numbers) {
         int rand;
-
         do {
             rand = RandomUtils.nextInt(Lotto.MIN, Lotto.MAX);
         } while (numbers.contains(rand));
         return rand;
     }
 
-    public static Lotto createWinningLotto(String input){
+    public static Lotto createWinningLotto(String input) {
         List<Integer> numbers = Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
