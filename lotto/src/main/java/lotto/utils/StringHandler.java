@@ -20,8 +20,9 @@ public class StringHandler {
     }
 
     public static List<Integer> toNumberList(String input) {
-        InputValidator.checkAllNumeric(input);
-        return Arrays.stream(input.split(InputView.SEPARATOR_NUMBERS))
+        String[] split = input.split(InputView.SEPARATOR_NUMBERS);
+        InputValidator.checkAllNumeric(split);
+        return Arrays.stream(split)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }

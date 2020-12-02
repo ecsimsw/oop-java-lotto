@@ -15,49 +15,8 @@ public class InputValidator {
 
     private InputValidator(){}
 
-    public static void checkIsValidLotto(List<Integer> numbers) {
-        checkIsDuplicated(numbers);
-        checkIsValidLength(numbers, Lotto.LEN);
-        checkIsInRange(numbers, Lotto.MIN, Lotto.MAX);
-    }
-
-    public static void checkIsValidWinningLotto(Lotto winningLotto, int bonus) {
-        checkIsInRange(bonus, Lotto.MIN, Lotto.MAX);
-        checkAlreadyUsed(winningLotto, bonus);
-    }
-
-    private static void checkAlreadyUsed(Lotto winningLotto, int bonus) {
-        if (winningLotto.contains(bonus)) {
-            throw new IllegalArgumentException(ALREADY_USED_NUMBER);
-        }
-    }
-
-    private static void checkIsInRange(int number, int min, int max) {
-        if (number < min || number > max) {
-            throw new IllegalArgumentException(NOT_NUMERIC_ERROR);
-        }
-    }
-
-    private static void checkIsDuplicated(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException(NUMBER_DUPLICATED_ERROR);
-        }
-    }
-
-    private static void checkIsValidLength(List<Integer> numbers, int len) {
-        if (numbers.size() != len) {
-            throw new IllegalArgumentException(INVALID_LENGTH_ERROR);
-        }
-    }
-
-    private static void checkIsInRange(List<Integer> numbers, int min, int max){
-        if (!numbers.stream().allMatch(num -> num >= min && num <= max)) {
-            throw new IllegalArgumentException(INVALID_RANGE_ERROR);
-        }
-    }
-
-    public static void checkAllNumeric(String input) {
-        boolean isAllNumeric = Arrays.stream(input.split(InputView.SEPARATOR_NUMBERS))
+    public static void checkAllNumeric(String[] input) {
+        boolean isAllNumeric = Arrays.stream(input)
                 .allMatch(n-> StringHandler.isNumeric(n));
 
         if (!isAllNumeric) {
@@ -68,6 +27,47 @@ public class InputValidator {
     public static void checkIsNumeric(String input) {
         if (!StringHandler.isNumeric(input)) {
             throw new IllegalArgumentException(NOT_NUMERIC_ERROR);
+        }
+    }
+
+    public static void checkIsValidLotto(List<Integer> numbers) {
+        isDuplicate(numbers);
+        isValidLength(numbers, Lotto.LEN);
+        isValidNumberList(numbers, Lotto.MIN, Lotto.MAX);
+    }
+
+    public static void checkIsValidWinningLotto(Lotto winningLotto, int bonus) {
+        isValidNumber(bonus, Lotto.MIN, Lotto.MAX);
+        isAlreadyUsed(winningLotto, bonus);
+    }
+
+    private static void isAlreadyUsed(Lotto winningLotto, int bonus) {
+        if (winningLotto.contains(bonus)) {
+            throw new IllegalArgumentException(ALREADY_USED_NUMBER);
+        }
+    }
+
+    private static void isDuplicate(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
+            throw new IllegalArgumentException(NUMBER_DUPLICATED_ERROR);
+        }
+    }
+
+    private static void isValidLength(List<Integer> numbers, int len) {
+        if (numbers.size() != len) {
+            throw new IllegalArgumentException(INVALID_LENGTH_ERROR);
+        }
+    }
+
+    private static void isValidNumber(int number, int min, int max) {
+        if (number < min || number > max) {
+            throw new IllegalArgumentException(NOT_NUMERIC_ERROR);
+        }
+    }
+
+    private static void isValidNumberList(List<Integer> numbers, int min, int max){
+        if (!numbers.stream().allMatch(num -> num >= min && num <= max)) {
+            throw new IllegalArgumentException(INVALID_RANGE_ERROR);
         }
     }
 }
