@@ -1,27 +1,25 @@
 package lotto.view;
 
-import lotto.lotto.Lotto;
 import lotto.lotto.Rank;
 
 public class OutputView {
-    private static final String NUMBER_OF_PURCHASE = "개 구매하였습니다. \n";
+    private static final String NUMBER_OF_PURCHASE = "%s개 구매하였습니다. \n";
     private static final String WINNING_COUNT_LINE = "%s개 일치 (%s원) - %s개\n";
-    private static final String PROFIT_LINE_START = "총 수익률은 ";
-    private static final String PROFIT_LINE_END = "%입니다.";
-    private static final String NUMBERS_LINE_START = "[";
-    private static final String NUMBERS_LINE_END = "]\n";
+    private static final String PROFIT_LINE_START = "총 수익률은 %s%%입니다.";
 
     private OutputView(){}
 
     public static void printNumbers(String numbers){
-        printMsg(NUMBERS_LINE_START);
         printMsg(numbers);
-        printMsg(NUMBERS_LINE_END);
+        printNewLine();
     }
 
-    public static void printNumberOfPurchase(int purchaseAmount) {
-        printMsg(Lotto.getNumberOfPurchase(purchaseAmount));
-        printMsg(NUMBER_OF_PURCHASE);
+    public static void printNewLine(){
+        printMsg("\n");
+    }
+
+    public static void printNumberOfPurchase(int purchaseCount) {
+        printfMsg(NUMBER_OF_PURCHASE, purchaseCount);
     }
 
     public static void printWinningLine(int index, int matchCount){
@@ -32,9 +30,7 @@ public class OutputView {
     }
 
     public static void printProfit(int profit){
-        printMsg(PROFIT_LINE_START);
-        printMsg(profit);
-        printMsg(PROFIT_LINE_END);
+        printfMsg(PROFIT_LINE_START, profit);
     }
 
     private static void printfMsg(String msg, Object... objects){

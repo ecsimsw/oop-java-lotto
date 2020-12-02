@@ -17,6 +17,7 @@ public class Lottos {
 
     public void printLottos() {
         lottos.stream().forEach(Lotto::printNumbers);
+        OutputView.printNewLine();
     }
 
     public void printPriceStatistics(WinningLotto winningLotto) {
