@@ -28,20 +28,20 @@ public class InputView {
     }
 
     public static WinningLotto getWinningLotto() {
-        Lotto lotto = getWInningNumber();
+        Lotto lotto = getLottoNumber();
         int bonus = getBonusNumber();
 
         return new WinningLotto(lotto, bonus);
     }
 
-    private static Lotto getWInningNumber() {
+    private static Lotto getLottoNumber() {
         OutputView.printMsg(ASK_WINNING_NUMBERS);
 
         try{
-            return LottoFactory.createWinningLotto(getInput());
+            return LottoFactory.createLotto(getInput());
         }catch (IllegalArgumentException IAE){
             IAE.printStackTrace();
-            return getWInningNumber();
+            return getLottoNumber();
         }
     }
 

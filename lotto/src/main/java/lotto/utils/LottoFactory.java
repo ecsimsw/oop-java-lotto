@@ -34,7 +34,7 @@ public class LottoFactory {
         return rand;
     }
 
-    public static Lotto createWinningLotto(String input) {
+    public static Lotto createLotto(String input) {
         List numbers = StringHandler.toNumberList(input);
         return new Lotto(numbers);
     }
