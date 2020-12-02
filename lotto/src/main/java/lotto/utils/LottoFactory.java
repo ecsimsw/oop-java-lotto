@@ -7,6 +7,7 @@ import lotto.lotto.Lotto;
 import lotto.lotto.Lottos;
 
 public class LottoFactory {
+
     private LottoFactory(){}
 
     public static Lottos createLottos(int count) {

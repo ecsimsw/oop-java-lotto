@@ -1,7 +1,9 @@
 package lotto.utils;
 
 import lotto.lotto.Lotto;
+import lotto.view.InputView;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class InputValidator {
@@ -36,8 +38,11 @@ public class InputValidator {
         }
     }
 
-    public static void checkIsNumeric(String input){
-        if(!StringHandler.isNumeric(input)){
+    public static void checkAllNumeric(String input){
+        boolean isAllNumeric = Arrays.stream(input.split(InputView.SEPARATOR_NUMBERS))
+                .allMatch(n-> StringHandler.isNumeric(n));
+
+        if(!isAllNumeric){
             throw new IllegalArgumentException(NOT_NUMERIC_ERROR);
         }
     }

@@ -53,7 +53,7 @@ public class InputView {
         if (!StringHandler.isNumeric(input)) {
             OutputView.printMsg("숫자가 아닙니다.");
             return getBonusNumber();
-        };
+        }
 
         return Integer.parseInt(input);
     }

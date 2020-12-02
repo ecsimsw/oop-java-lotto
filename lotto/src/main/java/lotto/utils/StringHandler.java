@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class StringHandler {
+
     private StringHandler(){}
 
     public static boolean isNumeric(String input) {
@@ -19,12 +20,9 @@ public class StringHandler {
     }
 
     public static List<Integer> toNumberList(String input){
-        try{
-            return Arrays.stream(input.split(InputView.SEPARATOR_NUMBERS))
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
-        }catch (IllegalArgumentException IAE){
-            throw new IllegalArgumentException("fsa");
-        }
+        InputValidator.checkAllNumeric(input);
+        return Arrays.stream(input.split(InputView.SEPARATOR_NUMBERS))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }
