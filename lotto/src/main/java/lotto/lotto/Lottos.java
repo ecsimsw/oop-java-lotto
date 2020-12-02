@@ -31,12 +31,7 @@ public class Lottos {
 
     private int[] getWinningCountList(List<Rank> rankList) {
         int[] winningCount = new int[Rank.values().length];
-
-        for (int i=0; i<rankList.size(); i++) {
-            Rank rank = rankList.get(i);
-            winningCount[rank.ordinal()]++;
-        }
-
+        rankList.stream().forEach(rank-> winningCount[rank.ordinal()]++);
         return winningCount;
     }
 
