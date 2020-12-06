@@ -9,4 +9,8 @@ public class LottoList {
     public LottoList(List<Lotto> lottoList){
         this.lottoList = lottoList;
     }
+
+    public void print(){
+        lottoList.stream().forEach(l-> l.printNumbers());
+    }
 }

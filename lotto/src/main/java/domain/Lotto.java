@@ -16,5 +16,8 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public void printNumbers(){
+        System.out.println(numbers.toString());
+    }
     // 추가 기능 구현
 }
