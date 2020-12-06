@@ -42,12 +42,14 @@
     - Buyer : 사용자의 사용 금액과 로또 번호 리스트를 저장한다.
     - Lotto : 6개의 번호 리스트와 보너스 번호를 포함한다. 
     - Lottos : 사용자의 Lotto 리스트를 저장한다.
+    - LottoFactory : 로또 번호를 생성한다.
     - Rank : Lotto의 당첨과 상금을 계산한다.
     - WinningLotto : 사용자가 입력한 우승 로또 번호와 보너스 번호를 저장한다.
+    - Money : 모든 금액을 포장하여 관리한다.
+    - User : 사용자 사용 금액, 로또 리스트를 저장하고 수익율을 출력한다.
     
 - #### utils
     - InputValidatorTest : 사용자 입력이 유효한지 검증한다.
-    - LottoFactory : 로또 번호를 생성한다.
     - RandomUtils : 범위 내 임의의 숫자를 리턴한다.
     - StringHandler : 사용자의 입력 문자열 처리를 위한 클래스이다.
     
