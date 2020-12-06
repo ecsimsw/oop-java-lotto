@@ -1,5 +1,7 @@
 package domain;
 
+import utils.InputValidator;
+
 import java.util.List;
 
 /**
@@ -15,6 +17,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        InputValidator.checkValidLotto(numbers);
         this.numbers = numbers;
     }
 
@@ -24,5 +27,9 @@ public class Lotto {
 
     public static int getAvailableCountBy(Money userAmount){
         return Money.divide(userAmount, price);
+    }
+
+    public boolean contains(int number){
+        return numbers.contains(number);
     }
 }
