@@ -7,7 +7,7 @@ public class InputValidator {
     private InputValidator(){}
 
     public static void checkValidLotto(List<Integer> numbers){
-        if(!isAllInRange(numbers, Lotto.MIN_NUM, Lotto.MIN_NUM)){
+        if(!isAllInRange(numbers, Lotto.MIN_NUM, Lotto.MAX_NUM)){
             throw new IllegalArgumentException("잘못된 범위의 로또 숫자입니다.");
         }
 
@@ -27,7 +27,7 @@ public class InputValidator {
     }
 
     public static void checkValidWinningLotto(Lotto lotto, int bonusNumber){
-        if(!isInRange(bonusNumber, Lotto.MIN_NUM, Lotto.MIN_NUM)){
+        if(!isInRange(bonusNumber, Lotto.MIN_NUM, Lotto.MAX_NUM)){
             throw new IllegalArgumentException("잘못된 범위의 보너스 숫자입니다.");
         }
 
