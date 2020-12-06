@@ -10,6 +10,8 @@ public class Lotto {
     public static final int MAX_NUM = 45;
     public static final int NUMBER_OF_NUMBERS = 6;
 
+    private static final Money price = new Money(1000);
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -19,5 +21,8 @@ public class Lotto {
     public void printNumbers(){
         System.out.println(numbers.toString());
     }
-    // 추가 기능 구현
+
+    public static int getAvailableCountBy(Money userAmount){
+        return Money.divide(userAmount, price);
+    }
 }
