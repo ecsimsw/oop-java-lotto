@@ -29,6 +29,12 @@ public class Lotto {
         return Money.divide(userAmount, price);
     }
 
+    public int getCountOfMatch(Lotto other){
+        return (int)numbers.stream()
+                .filter(number-> other.contains(number))
+                .count();
+    }
+
     public boolean contains(int number){
         return numbers.contains(number);
     }
