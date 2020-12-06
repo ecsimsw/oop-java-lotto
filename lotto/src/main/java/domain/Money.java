@@ -3,14 +3,23 @@ package domain;
 import utils.InputValidator;
 
 public class Money {
-    private final int money;
+    private final int value;
 
-    public Money(int money){
-        InputValidator.checkValidMoney(money);
-        this.money = money;
+    public Money(int value){
+        InputValidator.checkValidMoney(value);
+        this.value = value;
     }
 
-    public static int divide(Money a, Money b){
-        return a.money / b.money;
+    public static int getEarningRate(Money used, Money prize){
+        return (int)((prize.value / (double) used.value) * 100);
+    }
+
+    public static int getAvailableCount(Money holdMoney, Money price){
+        return holdMoney.value / price.value;
+    }
+
+    public static Money getUsedMoney(Money holdMoney, Money price){
+        int usedValue = (getAvailableCount(holdMoney, price) * price.value);
+        return new Money(usedValue);
     }
 }

@@ -11,10 +11,19 @@ public class Lotto {
     public static final int MIN_NUM = 1;
     public static final int MAX_NUM = 45;
     public static final int NUMBER_OF_NUMBERS = 6;
+    private static final int LOTTO_VALUE = 1000;
 
-    private static final Money price = new Money(1000);
+    private static final Money price = new Money(LOTTO_VALUE);
 
     private final List<Integer> numbers;
+
+    public static int getAvailableCountWith(Money userAmount){
+        return Money.getAvailableCount(userAmount, price);
+    }
+
+    public static Money getUsedMoney(Money userAmount){
+        return Money.getUsedMoney(userAmount, price);
+    }
 
     public Lotto(List<Integer> numbers) {
         InputValidator.checkValidLotto(numbers);
@@ -23,10 +32,6 @@ public class Lotto {
 
     public void printNumbers(){
         System.out.println(numbers.toString());
-    }
-
-    public static int getAvailableCountBy(Money userAmount){
-        return Money.divide(userAmount, price);
     }
 
     public int getCountOfMatch(Lotto other){

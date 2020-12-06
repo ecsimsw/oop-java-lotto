@@ -9,29 +9,28 @@ public class LottoList {
     private static final int PRINT_WINNING_FROM = 4;
     private static final int PRINT_WINNING_TO = 0;
 
-    List<Lotto> lottoList;
+    private final List<Lotto> lottoList;
 
     public LottoList(List<Lotto> lottoList){
         this.lottoList = lottoList;
     }
 
-    public void print(){
+    public void printLottoList(){
         lottoList.stream().forEach(l-> l.printNumbers());
     }
 
     public void printWinningResult(WinningLotto winningLotto){
-        List<Rank> rankList = getRankList(winningLotto);
-        int[] matchCounts = getMatchCountArray(rankList);
+        int[] matchCounts = getMatchCounts(winningLotto);
         for(int i = PRINT_WINNING_FROM; i>= PRINT_WINNING_TO; i--){
             int needToMatch = Rank.values()[i].getCountOfMatch();
             int winningMoney = Rank.values()[i].getWinningMoney();
-            int matchCount = matchCounts[i];
-            OutputView.printMatchScore(needToMatch, winningMoney, matchCount);
+            OutputView.printMatchScore(needToMatch, winningMoney, matchCounts[i]);
         }
     }
 
-    private int[] getMatchCountArray(List<Rank> rankList){
-        int[] matchCounts = new int[6];
+    private int[] getMatchCounts(WinningLotto winningLotto){
+        List<Rank> rankList = getRankList(winningLotto);
+        int[] matchCounts = new int[Lotto.NUMBER_OF_NUMBERS];
         for(Rank rank : rankList){
             matchCounts[rank.ordinal()]++;
         }
@@ -42,5 +41,16 @@ public class LottoList {
         return lottoList.stream()
                 .map(lotto -> lotto.calculateRank(winningLotto))
                 .collect(Collectors.toList());
+    }
+
+    public int getTotalPrize(WinningLotto winningLotto){
+        int[] matchCounts = getMatchCounts(winningLotto);
+        int totalPrize = 0;
+        int rankValuesSize = Rank.values().length;
+        for(int i =0; i<rankValuesSize; i++){
+            int winningMoney = Rank.values()[i].getWinningMoney();
+            totalPrize += (winningMoney * matchCounts[i]);
+        }
+        return totalPrize;
     }
 }
