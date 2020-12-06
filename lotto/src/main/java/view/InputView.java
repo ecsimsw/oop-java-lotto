@@ -52,6 +52,9 @@ public class InputView {
             OutputView.printMsg(ASK_WINNER_NUMBER);
             String line = getInput();
             return new Lotto(StringHandler.parseIntegerList(line, ","));
+        } catch (NumberFormatException NFE){
+            OutputView.printMsg("숫자를 입력하세요.\n");
+            return getLastLotto();
         } catch (IllegalArgumentException IAE) {
             OutputView.printMsg(IAE.getMessage());
             return getLastLotto();
