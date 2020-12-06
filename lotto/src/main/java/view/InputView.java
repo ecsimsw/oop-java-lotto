@@ -27,9 +27,23 @@ public class InputView {
 
     public static WinningLotto getWinningLotto(){
         Lotto lotto = getLastLotto();
-        int bonus = getBonusBall();
+        try{
+            int bonus = getBonusBall();
+            return new WinningLotto(lotto, bonus);
+        }catch (IllegalArgumentException IAE){
+            OutputView.printMsg(IAE.getMessage());
+            return new WinningLotto(lotto, getBonusBall());
+        }
+    }
 
-        return new WinningLotto(lotto, bonus);
+    public static WinningLotto getWinningLotto(Lotto lotto){
+        try{
+            int bonus = getBonusBall();
+            return new WinningLotto(lotto, bonus);
+        }catch (IllegalArgumentException IAE){
+            OutputView.printMsg(IAE.getMessage());
+            return new WinningLotto(lotto, getBonusBall());
+        }
     }
 
     private static Lotto getLastLotto(){
@@ -44,17 +58,17 @@ public class InputView {
     }
 
     public static int getBonusBall(){
-        try{
-            OutputView.printMsg(ASK_BONUS_BALL);
-            return getInteger();
-        }catch (IllegalArgumentException IAE){
-            OutputView.printMsg(IAE.getMessage());
-            return getBonusBall();
-        }
+        OutputView.printMsg(ASK_BONUS_BALL);
+        return getInteger();
     }
 
     private static int getInteger(){
-        return Integer.parseInt(getInput());
+        try{
+            return Integer.parseInt(getInput());
+        }catch (NumberFormatException NFE){
+            OutputView.printMsg("숫자를 입력하시오.\n");
+            return getInteger();
+        }
     }
 
     private static String getInput(){

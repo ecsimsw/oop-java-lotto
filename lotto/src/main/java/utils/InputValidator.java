@@ -1,8 +1,5 @@
 package utils;
-
 import domain.Lotto;
-import exception.InvalidBonusNumberException;
-import exception.InvalidLottoException;
 
 import java.util.List;
 
@@ -11,15 +8,15 @@ public class InputValidator {
 
     public static void checkValidLotto(List<Integer> numbers){
         if(!isAllInRange(numbers, Lotto.MIN_NUM, Lotto.MIN_NUM)){
-            throw new InvalidLottoException("잘못된 범위의 로또 숫자입니다.");
+            throw new IllegalArgumentException("잘못된 범위의 로또 숫자입니다.");
         }
 
         if(!isValidSize(numbers, Lotto.NUMBER_OF_NUMBERS)){
-            throw new InvalidLottoException("로또 숫자 개수와 다릅니다.");
+            throw new IllegalArgumentException("로또 숫자 개수와 다릅니다.");
         }
 
         if(!isNonDuplicated(numbers)){
-            throw new InvalidLottoException("로또 번호는 중복 되어선 안됩니다");
+            throw new IllegalArgumentException("로또 번호는 중복 되어선 안됩니다");
         }
     }
 
@@ -31,11 +28,11 @@ public class InputValidator {
 
     public static void checkValidWinningLotto(Lotto lotto, int bonusNumber){
         if(!isInRange(bonusNumber, Lotto.MIN_NUM, Lotto.MIN_NUM)){
-            throw new InvalidLottoException("잘못된 범위의 보너스 숫자입니다.");
+            throw new IllegalArgumentException("잘못된 범위의 보너스 숫자입니다.");
         }
 
         if(lotto.contains(bonusNumber)){
-            throw new InvalidBonusNumberException("이미 로또 번호에 포함된 숫자는 보너스 숫자가 될 수 없습니다.");
+            throw new IllegalArgumentException("이미 로또 번호에 포함된 숫자는 보너스 숫자가 될 수 없습니다.");
         }
     }
 
