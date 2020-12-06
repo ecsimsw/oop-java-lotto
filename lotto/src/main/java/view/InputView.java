@@ -36,7 +36,7 @@ public class InputView {
         }
     }
 
-    public static WinningLotto getWinningLotto(Lotto lotto){
+    private static WinningLotto getWinningLotto(Lotto lotto){
         try{
             int bonus = getBonusBall();
             return new WinningLotto(lotto, bonus);
