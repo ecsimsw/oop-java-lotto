@@ -4,9 +4,10 @@ import view.InputView;
 
 public class LottoGame {
 
-    public LottoGame(){ }
+    public LottoGame() {
+    }
 
-    public void play(){
+    public void play() {
         User user = User.purchaseLotto();
         user.printUserLottoList();
 

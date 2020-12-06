@@ -17,11 +17,11 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public static int getAvailableCountWith(Money userAmount){
+    public static int getAvailableCountWith(Money userAmount) {
         return Money.getAvailableCount(userAmount, price);
     }
 
-    public static Money getUsedMoney(Money userAmount){
+    public static Money getUsedMoney(Money userAmount) {
         return Money.getUsedMoney(userAmount, price);
     }
 
@@ -30,21 +30,21 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public void printNumbers(){
+    public void printNumbers() {
         System.out.println(numbers.toString());
     }
 
-    public int getCountOfMatch(Lotto other){
-        return (int)numbers.stream()
-                .filter(number-> other.contains(number))
+    public int getCountOfMatch(Lotto other) {
+        return (int) numbers.stream()
+                .filter(number -> other.contains(number))
                 .count();
     }
 
-    public boolean contains(int number){
+    public boolean contains(int number) {
         return numbers.contains(number);
     }
 
-    public Rank calculateRank(WinningLotto winningLotto){
+    public Rank calculateRank(WinningLotto winningLotto) {
         return winningLotto.match(this);
     }
 }

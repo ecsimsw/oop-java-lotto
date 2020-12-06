@@ -18,7 +18,7 @@ class InputValidatorTest {
         });
 
         assertThrows(IllegalArgumentException.class, () -> {
-            new Lotto(Arrays.asList(new Integer[]{1, 2, 3, 4,5,6,7}));
+            new Lotto(Arrays.asList(new Integer[]{1, 2, 3, 4, 5, 6, 7}));
         });
 
         assertThrows(IllegalArgumentException.class, () -> {
@@ -38,7 +38,7 @@ class InputValidatorTest {
 
     @Test
     void checkValidMoney() {
-        assertThrows(IllegalArgumentException.class, ()-> {
+        assertThrows(IllegalArgumentException.class, () -> {
             new Money(-1);
         });
 
@@ -47,14 +47,14 @@ class InputValidatorTest {
 
     @Test
     void checkValidWinningLotto() {
-        assertThrows(IllegalArgumentException.class,()->{
-            new WinningLotto(new Lotto(Arrays.asList(new Integer[]{1,2,3,4,5,6})), 6);
+        assertThrows(IllegalArgumentException.class, () -> {
+            new WinningLotto(new Lotto(Arrays.asList(new Integer[]{1, 2, 3, 4, 5, 6})), 6);
         });
 
-        assertThrows(IllegalArgumentException.class,()->{
-            new WinningLotto(new Lotto(Arrays.asList(new Integer[]{1,2,3,4,5,6})), 76);
+        assertThrows(IllegalArgumentException.class, () -> {
+            new WinningLotto(new Lotto(Arrays.asList(new Integer[]{1, 2, 3, 4, 5, 6})), 76);
         });
 
-        new WinningLotto(new Lotto(Arrays.asList(new Integer[]{1,2,3,4,5,6})), 7);
+        new WinningLotto(new Lotto(Arrays.asList(new Integer[]{1, 2, 3, 4, 5, 6})), 7);
     }
 }
