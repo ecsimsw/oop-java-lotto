@@ -12,11 +12,12 @@ public class InputValidator {
     private static final String NOT_NUMERIC_ERROR = "숫자가 아닌 입력입니다.";
     private static final String ALREADY_USED_NUMBER = "이미 사용된 로또 번호입니다.";
 
-    private InputValidator(){}
+    private InputValidator() {
+    }
 
     public static void checkAllNumeric(String[] input) {
         boolean isAllNumeric = Arrays.stream(input)
-                .allMatch(n-> StringHandler.isNumeric(n));
+                .allMatch(n -> StringHandler.isNumeric(n));
 
         if (!isAllNumeric) {
             throw new IllegalArgumentException(NOT_NUMERIC_ERROR);
@@ -64,7 +65,7 @@ public class InputValidator {
         }
     }
 
-    private static void isValidNumberList(List<Integer> numbers, int min, int max){
+    private static void isValidNumberList(List<Integer> numbers, int min, int max) {
         if (!numbers.stream().allMatch(num -> num >= min && num <= max)) {
             throw new IllegalArgumentException(INVALID_RANGE_ERROR);
         }
