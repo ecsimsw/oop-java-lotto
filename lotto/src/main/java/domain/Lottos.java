@@ -1,11 +1,18 @@
 package domain;
 
+import view.OutputView;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Lottos {
     public static final String DELIMITER_NAMES = ",";
+
     private List<Lotto> lottos;
+    private Map<Rank, Integer> rankTable = new HashMap<>();
 
     private Lottos(List<Lotto> lottos){
         this.lottos = lottos;
@@ -15,11 +22,33 @@ public class Lottos {
         List<Lotto> lottos = new ArrayList<>();
         while(lottos.size() < quantity){
             lottos.add(LottoFactory.createLotto());
-        }        return new Lottos(lottos);
+        }
+        return new Lottos(lottos);
     }
 
-    private List<Rank> getRankList(WinningLott`o win`ningLotto){
-        lottos.stream().map(lotto -> lotto.getCountOfMatch())
+    public void printResult(WinningLotto winningLotto){
+        setRankTable(winningLotto);
+        OutputView.printResult(rankTable);
+    }
+
+    private void setRankTable(WinningLotto winningLotto){
+        initializeRankTable();
+        for(Rank rank : getRankList(winningLotto)){
+            rankTable.put(rank, rankTable.get(rank)+1);
+        }
+        rankTable.remove(Rank.MISS);
+    }
+
+    private void initializeRankTable(){
+        for(Rank rank : Rank.values()){
+            rankTable.put(rank,0);
+        }
+    }
+
+    private List<Rank> getRankList(WinningLotto winningLotto){
+        return lottos.stream()
+                .map(lotto -> lotto.calculateRank(winningLotto))
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -3,7 +3,6 @@ import domain.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import jdk.internal.util.xml.impl.Input;
 import view.InputView;
 import view.OutputView;
 
@@ -23,6 +22,6 @@ public class LottoController {
         Lotto lastLotto = InputView.getLastLotto();
         WinningLotto winningLotto = InputView.getBonus(lastLotto);
 
-
+        userLottos.printResult(winningLotto);
     }
 }
