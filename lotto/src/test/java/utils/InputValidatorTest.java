@@ -1,7 +1,6 @@
 package utils;
 
 import domain.Lotto;
-import domain.Money;
 import domain.WinningLotto;
 import org.junit.jupiter.api.Test;
 

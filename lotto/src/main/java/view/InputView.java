@@ -1,10 +1,12 @@
 package view;
 
 import domain.Lotto;
+import domain.Lottos;
 import domain.Money;
 import domain.WinningLotto;
 import utils.StringHandler;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
@@ -16,54 +18,36 @@ public class InputView {
     private InputView() {
     }
 
-    public static Money getMoney() {
-        try {
+    public static Money getAmount(){
+        try{
             OutputView.printMsg(ASK_MONEY_MESSAGE);
             return new Money(getInteger());
-        } catch (IllegalArgumentException IAE) {
-            OutputView.printMsg(IAE.getMessage());
-            return getMoney();
+        }catch (Exception e){
+            OutputView.printfMsg("적절하지 않은 금액");
+            return getAmount();
         }
     }
 
-    public static WinningLotto getWinningLotto() {
-        Lotto lotto = getLastLotto();
-        try {
-            int bonus = getBonusBall();
-            return new WinningLotto(lotto, bonus);
-        } catch (IllegalArgumentException IAE) {
-            OutputView.printMsg(IAE.getMessage());
-            return new WinningLotto(lotto, getBonusBall());
-        }
-    }
-
-    private static WinningLotto getWinningLotto(Lotto lotto) {
-        try {
-            int bonus = getBonusBall();
-            return new WinningLotto(lotto, bonus);
-        } catch (IllegalArgumentException IAE) {
-            OutputView.printMsg(IAE.getMessage());
-            return new WinningLotto(lotto, getBonusBall());
-        }
-    }
-
-    private static Lotto getLastLotto() {
-        try {
+    public static Lotto getLastLotto(){
+        try{
             OutputView.printMsg(ASK_WINNER_NUMBER);
-            String line = getInput();
-            return new Lotto(StringHandler.parseIntegerList(line, ","));
-        } catch (NumberFormatException NFE){
-            OutputView.printMsg("숫자를 입력하세요.\n");
-            return getLastLotto();
-        } catch (IllegalArgumentException IAE) {
-            OutputView.printMsg(IAE.getMessage());
+            List<Integer> list = StringHandler.parseIntegerList(getInput(), Lottos.DELIMITER_NAMES);
+            return new Lotto(list);
+        }catch (Exception e){
+            OutputView.printMsg(e.getMessage());
             return getLastLotto();
         }
     }
 
-    public static int getBonusBall() {
-        OutputView.printMsg(ASK_BONUS_BALL);
-        return getInteger();
+    public static WinningLotto getBonus(Lotto lastLotto){
+        try{
+            OutputView.printMsg(ASK_BONUS_BALL);
+            int bonus = getInteger();
+            return new WinningLotto(lastLotto, bonus);
+        }catch (Exception e){
+            OutputView.printMsg(e.getMessage());
+            return getBonus(lastLotto);
+        }
     }
 
     private static int getInteger() {
