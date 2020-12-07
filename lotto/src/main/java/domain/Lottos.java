@@ -51,6 +51,15 @@ public class Lottos {
                 .collect(Collectors.toList());
     }
 
+    public Money getPrize(WinningLotto winningLotto){
+        List<Rank> ranks = getRankList(winningLotto);
+        int totalPrize = 0;
+        for(Rank rank : ranks){
+            totalPrize += rank.getWinningMoney();
+        }
+        return new Money(totalPrize);
+    }
+
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();

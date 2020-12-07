@@ -16,12 +16,16 @@ public class LottoController {
         int quantity = Money.getAvailableQuantity(Lotto.price, userAmount);
 
         Lottos userLottos = Lottos.buyLottos(quantity);
-        Money usedAmount = Money.getAmountUsed(Lotto.price, userAmount);
         OutputView.printMsg(userLottos.toString());
 
         Lotto lastLotto = InputView.getLastLotto();
         WinningLotto winningLotto = InputView.getBonus(lastLotto);
 
         userLottos.printResult(winningLotto);
+
+        Money earned = userLottos.getPrize(winningLotto);
+        Money used = Money.getAmountUsed(Lotto.price, userAmount);
+
+        OutputView.printEarningRate(Money.getEarningRate(used, earned));
     }
 }

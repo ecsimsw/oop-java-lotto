@@ -18,4 +18,8 @@ public class Money {
         int used = product.value * getAvailableQuantity(product, amount);
         return new Money(used);
     }
+
+    public static int getEarningRate(Money used, Money earned){
+        return (int)((earned.value / (double)used.value) *100);
+    }
 }
