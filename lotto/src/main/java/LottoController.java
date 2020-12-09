@@ -24,7 +24,7 @@ public class LottoController {
         userLottos.printResult(winningLotto);
 
         Money earned = userLottos.getPrize(winningLotto);
-        Money used = Money.getAmountUsed(Lotto.price, userAmount);
+        Money used = Money.getUsedAmount(Lotto.price, userAmount);
 
         OutputView.printEarningRate(Money.getEarningRate(used, earned));
     }
