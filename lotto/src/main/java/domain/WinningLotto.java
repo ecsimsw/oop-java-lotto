@@ -7,9 +7,16 @@ public class WinningLotto {
     private final Lotto lotto;
     private final int bonusNo;
 
-    public WinningLotto(Lotto lotto, int bonusNo) {
+    private WinningLotto(Lotto lotto, int bonusNo) {
+        // bonus 숫자 범위
+        // bonus가 lotto에 포함되진 않는지 체크
         this.lotto = lotto;
         this.bonusNo = bonusNo;
+    }
+
+    public static WinningLotto create(Lotto lotto, int bonus){
+        WinningLotto winningLotto = new WinningLotto(lotto, bonus);
+        return winningLotto;
     }
 
     public Rank match(Lotto userLotto) {
