@@ -8,6 +8,8 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class In {
+    private In(){}
+
     public static Lotto getLastLotto(Scanner scanner){
         Out.print("작년 로또 번호를 입력하세요.\n");
         String line = In.getInput(scanner);

@@ -3,6 +3,7 @@ import domain.Rank;
 import domain.WinningLotto;
 import utils.LottoFactory;
 import view.In;
+import view.Out;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +17,10 @@ public class Application {
         int money = In.getMoney(scanner);
 
         int lottoCnt = money / Lotto.PRICE;
-        int used = money - lottoCnt * Lotto.PRICE;
+        int used = lottoCnt * Lotto.PRICE;
 
         List<Lotto> lottoList = LottoFactory.getLottoList(lottoCnt);
+        Out.printLottoList(lottoList);
 
         Lotto lastLotto = In.getLastLotto(scanner);
         int bonus = In.getBonusNumber(scanner);

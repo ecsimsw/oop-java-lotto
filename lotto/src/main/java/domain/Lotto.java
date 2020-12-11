@@ -26,4 +26,9 @@ public class Lotto {
                 .filter(number->other.isInclude(number))
                 .count();
     }
+
+    @Override
+    public String toString(){
+        return numbers.toString();
+    }
 }
