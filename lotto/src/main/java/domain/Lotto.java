@@ -17,5 +17,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    // 추가 기능 구현
+    public boolean isInclude(int number){
+        return numbers.contains(number);
+    }
+
+    public int getMatchPoint(Lotto other){
+        return (int)numbers.stream()
+                .filter(number->other.isInclude(number))
+                .count();
+    }
 }
