@@ -28,5 +28,13 @@ public class Application {
         for(Lotto lotto : lottoList){
             ranks.add(winningLotto.match(lotto));
         }
+
+        int prize =0;
+        for(Rank rank : ranks){
+            prize += rank.getWinningMoney();
+        }
+
+        int rate = (int)(prize / (double)used * 100);
+        System.out.print(rate);
     }
 }
